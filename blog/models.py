@@ -3,11 +3,12 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-class Post(models.Model):
+class Files(models.Model):
+    file=models.FileField(upload_to='files/encrypted')
+    password=models.CharField(max_length=100,blank=True,null=True,default=None)
     title=models.CharField(max_length=100)
-    content=models.TextField()
+    about=models.CharField(max_length=100)
     date_posted=models.DateTimeField(default=timezone.now)
-    author=models.ForeignKey(User, on_delete=models.CASCADE)
     objects=models.Manager() 
     
     def __str__(self):
